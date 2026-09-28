@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bit · Estudio de comunicación</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;800&family=DM+Sans:wght@400;500&display=swap">
+<style>
+:root{--blue:#1f45ff;--orange:#ff5a0a;--bg:#fff;--fg:#0c0c10;--line:#e4e6ee;--mute:#5b5f70;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c0c10;--fg:#fff;--line:#25283a;--mute:#a9adc2}}
+:root[data-theme="dark"]{--bg:#0c0c10;--fg:#fff;--line:#25283a;--mute:#a9adc2}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--fg);font:400 1.05rem/1.6 "DM Sans",system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3,.logo,.mq{font-family:"Bricolage Grotesque","DM Sans",system-ui,sans-serif;line-height:1;letter-spacing:-.035em}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0}
+.logo{font-weight:800;font-size:1.6rem;text-decoration:none}
+.logo i{color:var(--orange);font-style:normal}
+.btn{display:inline-block;border:0;cursor:pointer;background:var(--fg);color:var(--bg);font:500 1rem "DM Sans",sans-serif;padding:14px 28px;border-radius:999px;text-decoration:none;transition:background .25s,transform .25s}
+.btn:hover{background:var(--orange);color:#fff;transform:translateY(-3px)}
+.hero{position:relative;padding:60px 0 80px}
+.hero h1{font-weight:800;font-size:clamp(3.2rem,11vw,8rem);max-width:10ch;position:relative;z-index:2}
+.hero h1 em{font-style:normal;color:var(--orange)}
+.hero p{max-width:32rem;margin:24px 0 32px;color:var(--mute);font-size:1.2rem;position:relative;z-index:2}
+.hero .btn{position:relative;z-index:2}
+.orb{position:absolute;right:0;top:8%;width:min(340px,55vw);aspect-ratio:1;z-index:1;pointer-events:none;transition:transform .4s ease-out}
+.orb b{position:absolute;inset:0;background:var(--orange);border-radius:60% 40% 55% 45%/50% 60% 40% 50%;animation:morph 8s ease-in-out infinite}
+.orb b+b{inset:22% 30% -6% -10%;background:var(--blue);mix-blend-mode:multiply;animation-delay:-4s;border-radius:45% 55% 40% 60%/60% 40% 60% 40%}
+@keyframes morph{50%{border-radius:40% 60% 45% 55%/45% 50% 60% 55%;transform:rotate(10deg) scale(1.06)}}
+.mqs{padding:26px 0;border-block:1px solid var(--line);overflow:hidden}
+.mq{display:flex;width:max-content;font-weight:800;font-size:clamp(3rem,9vw,6.5rem);white-space:nowrap;animation:slide 28s linear infinite}
+.mq.rev{animation-direction:reverse;animation-duration:36s;color:transparent;-webkit-text-stroke:1.5px var(--fg)}
+.mq span{padding-right:.5em}
+.mq span:nth-child(even){color:var(--blue);-webkit-text-stroke:0}
+.mqs:hover .mq{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+section{padding:100px 0}
+h2{font-weight:800;font-size:clamp(2.2rem,6vw,4rem);margin-bottom:14px}
+.lead{color:var(--mute);max-width:32rem;margin-bottom:46px}
+.svc{list-style:none;padding:0;border-top:1px solid var(--line)}
+.svc li{position:relative;overflow:hidden;border-bottom:1px solid var(--line);padding:26px 14px;display:grid;grid-template-columns:1fr 1.2fr;gap:8px 30px;align-items:center;transition:color .3s,padding .3s;cursor:default}
+.svc li::before{content:"";position:absolute;inset:0;background:var(--orange);transform:scaleY(0);transform-origin:var(--o,top);transition:transform .4s cubic-bezier(.7,0,.2,1);z-index:0}
+.svc li:nth-child(even)::before{background:var(--blue)}
+.svc li:hover::before,.svc li:focus-within::before{transform:scaleY(1)}
+.svc li:hover,.svc li:focus-within{color:#fff;padding-left:28px}
+.svc li>*{position:relative;z-index:1}
+.svc h3{font-size:clamp(1.5rem,3.6vw,2.4rem);font-weight:800}
+.svc p{color:var(--mute);transition:color .3s}
+.svc li:hover p,.svc li:focus-within p{color:#fff}
+@media (max-width:640px){.svc li{grid-template-columns:1fr}}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:34px}
+.steps div{border-top:3px solid var(--blue);padding-top:18px}
+.steps h3{font-size:1.6rem;margin-bottom:8px}
+.steps p{color:var(--mute)}
+.about{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:50px;align-items:center}
+.about p+p{margin-top:14px}
+.big{font:800 clamp(2.6rem,8vw,5rem)/1 "Bricolage Grotesque",sans-serif;letter-spacing:-.04em;color:var(--blue)}
+.big small{display:block;margin-top:14px;font:400 1.05rem/1.5 "DM Sans",sans-serif;letter-spacing:0;color:var(--mute)}
+#contacto{text-align:center}
+#contacto .lead{margin-inline:auto}
+form{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:720px;margin:0 auto;text-align:left}
+form .btn{grid-column:1/-1;justify-self:center}
+.f{display:flex;flex-direction:column;gap:6px}
+.f.full{grid-column:1/-1}
+label{font-weight:500;font-size:.95rem}
+input,select,textarea{font:inherit;color:var(--fg);background:transparent;border:0;border-bottom:2px solid var(--line);padding:10px 2px;border-radius:0;transition:border-color .25s}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--orange)}
+select option{color:#0c0c10}
+textarea{min-height:90px;resize:vertical}
+.ok{display:none;grid-column:1/-1;font:800 1.6rem "Bricolage Grotesque",sans-serif;color:var(--blue)}
+form.sent .ok{display:block}
+form.sent .btn{display:none}
+@media (max-width:640px){form{grid-template-columns:1fr}}
+footer{border-top:1px solid var(--line);padding:40px 0 34px;color:var(--mute);font-size:.92rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px}
+footer a{text-decoration:none;margin-right:16px}
+footer a:hover{color:var(--orange)}
+.js .rv{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease;transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.mq,.orb b{animation:none}.js .rv{opacity:1;transform:none;transition:none}.svc li::before{transition:none}}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <nav><a class="logo" href="#">bit<i>.</i></a><a class="btn" href="#contacto">Hablemos</a></nav>
+  <div class="hero">
+    <div class="orb" id="orb" aria-hidden="true"><b></b><b></b></div>
+    <h1>Ponele ritmo a tu <em>marca.</em></h1>
+    <p>Somos Bit, un estudio de comunicación de La Plata. Logos, video, fotos y redes para que tu marca se vea y se escuche.</p>
+    <a class="btn" href="#servicios">Mirá qué hacemos</a>
+  </div>
+</header>
+
+<div class="mqs" aria-hidden="true">
+  <div class="mq"><span>Logos</span><span>Branding</span><span>Video</span><span>Fotografía</span><span>Redes</span><span>Logos</span><span>Branding</span><span>Video</span><span>Fotografía</span><span>Redes</span></div>
+  <div class="mq rev"><span>Edición</span><span>Contenido</span><span>Marca</span><span>Ideas</span><span>Bit</span><span>Edición</span><span>Contenido</span><span>Marca</span><span>Ideas</span><span>Bit</span></div>
+</div>
+
+<section id="servicios">
+  <div class="wrap">
+    <h2 class="rv">Lo que hacemos</h2>
+    <p class="lead rv">Pasá el mouse por cada servicio. Todo lo que una marca chica necesita para arrancar con buena cara.</p>
+    <ul class="svc">
+      <li class="rv"><h3>Diseño de logos</h3><p>Un símbolo simple y con personalidad, que funcione en una remera y en una foto de perfil.</p></li>
+      <li class="rv"><h3>Branding básico</h3><p>Paleta, tipografías y reglas de uso para que tu marca se vea siempre igual de bien.</p></li>
+      <li class="rv"><h3>Grabación de video</h3><p>Reels, spots y contenido para redes, con ideas frescas y buena luz.</p></li>
+      <li class="rv"><h3>Fotografía</h3><p>Producto, equipo y local. Fotos que le dan vida a tu perfil y a tu web.</p></li>
+      <li class="rv"><h3>Edición de video</h3><p>Ritmo, subtítulos, música y transiciones. Tu material crudo, listo para publicar.</p></li>
+      <li class="rv"><h3>Gestión de redes</h3><p>Planificamos, publicamos y respondemos para que tu comunidad crezca.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="rv">Cómo laburamos</h2>
+    <p class="lead rv">Un proceso corto y claro, sin vueltas.</p>
+    <div class="steps">
+      <div class="rv"><h3>1. Charlamos</h3><p>Nos contás qué hacés, a quién le hablás y qué querés lograr.</p></div>
+      <div class="rv" style="--d:.12s"><h3>2. Creamos</h3><p>Diseñamos, grabamos y editamos. Te mostramos avances y ajustamos.</p></div>
+      <div class="rv" style="--d:.24s"><h3>3. Publicamos</h3><p>Dejamos todo listo y, si querés, nos encargamos de tus redes.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap about">
+    <div>
+      <h2 class="rv">Estudiantes con ganas de hacer</h2>
+      <p class="rv">Bit es un grupo de estudiantes de comunicación digital de La Plata. Tenemos algunos meses de experiencia y mucha energía para probar, ajustar y mejorar.</p>
+      <p class="rv">Conocemos la ciudad y sus negocios, y hablamos el mismo idioma que tu público.</p>
+    </div>
+    <div class="big rv">Hecho en La Plata<small>Por estudiantes de comunicación digital.</small></div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="wrap">
+    <h2 class="rv">¿Arrancamos con tu marca?</h2>
+    <p class="lead rv">Completá el formulario y te respondemos con una propuesta a tu medida.</p>
+    <form id="cf" class="rv">
+      <div class="f"><label for="n">Nombre</label><input id="n" required autocomplete="name"></div>
+      <div class="f"><label for="e">Email</label><input id="e" type="email" required autocomplete="email"></div>
+      <div class="f"><label for="m">Nombre de tu marca</label><input id="m"></div>
+      <div class="f"><label for="s">Qué necesitás</label>
+        <select id="s"><option>Logo</option><option>Branding básico</option><option>Grabación de video</option><option>Fotografía</option><option>Edición de video</option><option>Gestión de redes</option><option>Varias cosas</option></select></div>
+      <div class="f full"><label for="t">Contanos tu idea</label><textarea id="t"></textarea></div>
+      <button class="btn" type="submit">Enviar</button>
+      <p class="ok" role="status">¡Gracias! Te escribimos pronto.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div><a class="logo" href="#">bit<i>.</i></a><p>Estudio de comunicación · La Plata, Buenos Aires</p></div>
+    <div><a href="#servicios">Servicios</a><a href="#contacto">Contacto</a><a href="mailto:hola@bitestudio.com">hola@bitestudio.com</a></div>
+    <p>© 2026 Bit. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
+document.querySelectorAll('.rv').forEach(function(el,i){if(el.parentElement.classList.contains('svc'))el.style.setProperty('--d',(Array.prototype.indexOf.call(el.parentElement.children,el)*.08)+'s');io.observe(el)});
+document.querySelectorAll('.svc li').forEach(function(li){
+  function side(e){var r=li.getBoundingClientRect();li.style.setProperty('--o',(e.clientY-r.top)<r.height/2?'top':'bottom')}
+  li.addEventListener('mouseenter',side);li.addEventListener('mouseleave',side);
+});
+var orb=document.getElementById('orb');
+window.addEventListener('mousemove',function(e){var x=(e.clientX/innerWidth-.5)*40,y=(e.clientY/innerHeight-.5)*40;orb.style.transform='translate('+x+'px,'+y+'px)'});
+document.getElementById('cf').addEventListener('submit',function(e){e.preventDefault();this.classList.add('sent')});
+</script>
+</body>
+</html>
